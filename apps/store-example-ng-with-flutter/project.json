@@ -1,0 +1,88 @@
+{
+  "name": "store-example-ng-with-flutter",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/store-example-ng-with-flutter/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/store-example-ng-with-flutter",
+        "index": "apps/store-example-ng-with-flutter/src/index.html",
+        "browser": "apps/store-example-ng-with-flutter/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/store-example-ng-with-flutter/tsconfig.app.json",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/store-example-ng-with-flutter/public"
+          }
+        ],
+        "styles": ["apps/store-example-ng-with-flutter/src/styles.css"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "store-example-ng-with-flutter:build:production"
+        },
+        "development": {
+          "buildTarget": "store-example-ng-with-flutter:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "store-example-ng-with-flutter:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/store-example-ng-with-flutter/jest.config.ts"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "store-example-ng-with-flutter:build",
+        "staticFilePath": "dist/apps/store-example-ng-with-flutter/browser",
+        "spa": true
+      }
+    }
+  }
+}
