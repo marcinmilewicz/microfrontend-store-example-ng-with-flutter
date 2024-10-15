@@ -1,0 +1,16 @@
+.basket {
+
+}
+
+.layout {
+  display: flex;
+  justify-content: space-between;
+}
+.product-list {
+  flex: 1;
+}
+.store-basket {
+  height: 600px;
+  width: 300px;
+
+}

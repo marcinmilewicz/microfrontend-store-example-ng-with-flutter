@@ -1,0 +1,19 @@
+<div class="product-list">
+  <h2>Products</h2>
+  @if (products().length > 0) {
+    <div class="grid">
+      @for (product of products(); track product.id) {
+        <div class="card">
+          <img [src]="product.imageUrl" alt="{{ product.name }}" />
+          <h3>{{ product.name }}</h3>
+          <p>Price: PLN {{ product.price }}</p>
+          <button (click)="addToBasket(product)">
+            <i class="fas fa-shopping-cart"></i> Add to Basket
+          </button>
+        </div>
+      }
+    </div>
+  } @else {
+    <p>No products available.</p>
+  }
+</div>

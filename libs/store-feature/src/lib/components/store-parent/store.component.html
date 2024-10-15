@@ -1,0 +1,11 @@
+<div class="layout">
+  <lib-product-list class="product-list"
+                    [products]="products()" />
+  <flutter-loader
+    (appLoaded)="onBasketLoaded($event)"
+    src="flutter-elements/store-basket-element/main.dart.js"
+    assetBase="flutter-elements/store-basket-element/"
+    initialEventName="[StoreBasket] initialized"
+    class="store-basket"
+  />
+</div>

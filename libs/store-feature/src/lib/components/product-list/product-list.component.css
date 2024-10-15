@@ -1,0 +1,35 @@
+.product-list {
+  padding: 20px;
+  border-right: 1px solid #ccc;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+.card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+button {
+  margin-top: 10px;
+  background-color: #DDFFAA92;
+  color: black;
+  border: none;
+
+  padding: 10px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: rgba(164, 211, 93, 0.57);
+}
+i {
+  margin-right: 5px;
+}

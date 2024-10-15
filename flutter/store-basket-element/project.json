@@ -1,0 +1,6 @@
+{
+  "name": "cart-element",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "flutter/cart-element/src",
+  "tags": []
+}

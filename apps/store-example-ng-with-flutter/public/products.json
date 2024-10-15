@@ -1,0 +1,46 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "LEGO 10321 ICONS Corvette",
+      "price": 599.99,
+      "imageUrl": "images/LEGO-10321-ICONS-Corvette.jpg"
+    },
+    {
+      "id": 2,
+      "name": "LEGO 42160 Technic Audi RS Q e-tron",
+      "price": 584.83,
+      "imageUrl": "images/LEGO-42160-Technic-Audi-RS-Q.jpg"
+    },
+    {
+      "id": 3,
+      "name": "LEGO 42172 Technic McLaren P1",
+      "price": 1459.99,
+      "imageUrl": "images/LEGO-42172-Technic-McLaren-P1.jpg"
+    },
+    {
+      "id": 4,
+      "name": "LEGO 42177 Technic Mercedes-Benz G 500",
+      "price": 886.99,
+      "imageUrl": "images/LEGO-42177-Technic-Mercedes-G500.jpg"
+    },
+    {
+      "id": 5,
+      "name": "LEGO 42196 Technic Lamborghini Huracán",
+      "price": 199.99,
+      "imageUrl": "images/LEGO-42196-Technic-huracan.jpg"
+    },
+    {
+      "id": 6,
+      "name": "LEGO 10298 ICONS Vespa 125",
+      "price": 314.99,
+      "imageUrl": "images/LEGO-Creator-Vespa-125-10298.jpg"
+    },
+    {
+      "id": 3,
+      "name": "LEGO 42156 Technic Peugeot Le Mans Hybrid Hypercar",
+      "price": 632.65,
+      "imageUrl": "images/LEGO-Technic-Peugeot-9X8-24H-Le-Mans-Hybrid-Hypercar-42156.jpg"
+    }
+  ]
+}

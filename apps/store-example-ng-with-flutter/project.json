@@ -22,7 +22,13 @@
           }
         ],
         "styles": ["apps/store-example-ng-with-flutter/src/styles.css"],
-        "scripts": []
+        "scripts": [
+          {
+            "input": "apps/store-example-ng-with-flutter/public/flutter-elements/store-basket-element/flutter.js",
+            "inject": true,
+            "bundleName": "flutter"
+          }
+        ]
       },
       "configurations": {
         "production": {
