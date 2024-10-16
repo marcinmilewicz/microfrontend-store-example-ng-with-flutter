@@ -14,7 +14,6 @@ export class ProductListComponent {
   products = input<Product[]>([]);
 
   addToBasket(product: Product) {
-    console.log(`Added ${product.name} to basket!`);
     this.#productInteropService.state.addProduct(product);
   }
 }

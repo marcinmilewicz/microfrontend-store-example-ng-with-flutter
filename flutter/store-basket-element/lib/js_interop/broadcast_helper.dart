@@ -1,6 +1,13 @@
 import 'dart:js_interop';
 import 'package:web/web.dart';
 
+@JSExport()
+class EventData {
+  final dynamic data;
+
+  EventData(this.data);
+}
+
 void broadcastAppEvent(String name, JSObject data) {
   final HTMLElement? root =
       document.querySelector('[flt-renderer]') as HTMLElement?;

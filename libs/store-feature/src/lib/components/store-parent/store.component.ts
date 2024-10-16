@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FlutterLoaderComponent } from '@store-example-ng-with-flutter/flutter-shared';
+import { Product } from '../../product.model';
 import { ProductsApiService } from '../../services/products-api.service';
 import { ProductListComponent } from '../product-list/product-list.component';
 import { ProductInteropService } from '../../services/product-interop.service';
@@ -20,7 +21,18 @@ export class StoreComponent {
     initialValue: [],
   });
 
-  onBasketLoaded(state:any) {
+  readonly eventsForListening = [
+    '[StoreBasket] Product added',
+    '[StoreBasket] Product decremented',
+    '[StoreBasket] Product removed from basket',
+    '[StoreBasket] Product incremented',
+  ];
+
+  onBasketLoaded(state: { addProduct: (product: Product) => void }) {
     this.#productInteropService.state = state;
+  }
+
+  onEventBroadcasted(event: CustomEvent) {
+    console.log(event);
   }
 }

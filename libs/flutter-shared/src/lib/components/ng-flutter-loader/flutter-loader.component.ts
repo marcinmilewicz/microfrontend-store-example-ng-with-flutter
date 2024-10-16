@@ -5,6 +5,7 @@ import {
   ElementRef,
   inject,
   input,
+  OnDestroy,
   output,
   viewChild,
 } from '@angular/core';
@@ -28,14 +29,18 @@ declare let window: {
   template: ` <div class="flutter-target" #flutterTarget></div>`,
   styleUrls: ['./flutter-loader.component.css'],
 })
-export class FlutterLoaderComponent implements AfterViewInit {
+export class FlutterLoaderComponent implements AfterViewInit, OnDestroy {
   private readonly document: Document = inject(DOCUMENT);
   flutterTarget = viewChild<ElementRef>('flutterTarget');
 
   src = input('main.dart.js');
   assetBase = input('');
   initialEventName = input<string>('');
-  appLoaded = output();
+  eventsForListening = input<string[]>(['']);
+  appLoaded = output<any>();
+  eventBroadcasted = output<any>();
+
+  #eventListeners: Array<() => void> = [];
 
   ngAfterViewInit(): void {
     const target: HTMLElement = this.flutterTarget()?.nativeElement;
@@ -44,18 +49,34 @@ export class FlutterLoaderComponent implements AfterViewInit {
     this.#initializeListener(target);
   }
 
+  ngOnDestroy(): void {
+    this.#removeListeners();
+  }
+
   #initializeListener(target: HTMLElement) {
-    target.addEventListener(
-      this.initialEventName(),
-      (event: Event) => {
-        let state = (event as CustomEvent).detail;
-        window._debug = state;
-        this.appLoaded.emit(state);
-      },
-      {
-        once: true,
-      }
-    );
+    const appLoadedListener = (event: Event) => {
+      let state = (event as CustomEvent).detail;
+      window._debug = state;
+      this.appLoaded.emit(state);
+    };
+
+    target.addEventListener(this.initialEventName(), appLoadedListener, {
+      once: true,
+    });
+
+    this.#eventListeners.push(() => {
+      target.removeEventListener(this.initialEventName(), appLoadedListener);
+    });
+
+    this.eventsForListening().forEach((eventName) => {
+      const listener = (event: Event) => this.eventBroadcasted.emit(event);
+
+      target.addEventListener(eventName, listener);
+
+      this.#eventListeners.push(() => {
+        target.removeEventListener(eventName, listener);
+      });
+    });
   }
 
   #loadFlutterApp(target: HTMLElement) {
@@ -72,5 +93,10 @@ export class FlutterLoaderComponent implements AfterViewInit {
         await appRunner.runApp();
       },
     });
+  }
+
+  #removeListeners() {
+    this.#eventListeners.forEach((removeListener) => removeListener());
+    this.#eventListeners = []; // Clear the array after removing listeners
   }
 }

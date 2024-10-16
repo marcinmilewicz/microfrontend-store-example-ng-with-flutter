@@ -1,6 +1,6 @@
+import 'dart:js_interop';
 import 'package:flutter/material.dart';
 import 'package:store_basket/store_basket.dart';
-import 'dart:js_interop' show createJSInteropWrapper;
 import 'js_interop/store_basket_manager.dart';
 import 'js_interop/broadcast_helper.dart';
 
@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final state = _storeBasketKey.currentState;
-      print(state);
+
       if (state != null) {
         storeBasketManager = StoreBasketManager(storeBasketState: state);
         final export = createJSInteropWrapper(storeBasketManager);
@@ -60,12 +60,17 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void onBroadcast(String name, Object data) {
+    JSObject jsObject = createJSInteropWrapper(EventData(data));
+    broadcastAppEvent(name, jsObject);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: getApplicationTheme(),
-      home: StoreBasket(key: _storeBasketKey),
+      home: StoreBasket(key: _storeBasketKey, onBroadcast: onBroadcast),
     );
   }
 }

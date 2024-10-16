@@ -165,7 +165,7 @@ packages:
     description:
       path: "packages/store_basket"
       ref: main
-      resolved-ref: c799eda56c59ec333ef7cb3b11b3bcde068c5213
+      resolved-ref: "160e58d9800d79d67c081dc6ec7543bae6353915"
       url: "git@github.com:marcinmilewicz/store-example-flutter.git"
     source: git
     version: "0.0.1"
